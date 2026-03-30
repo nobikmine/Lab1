@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="../ConsoleApp2/ConsoleApp2.csproj" Id="e6b98d0c-0c86-400e-a7fe-bf08326f7aac" />
+  <Project Path="../ConsoleApp3/ConsoleApp3.csproj" Id="2981242c-a5be-40f1-8d55-b8ac14fd9ada" />
+  <Project Path="../TestProject1/TestProject1.csproj" Id="aff4fa5f-55aa-41b6-b06b-2d6a1124e41a" />
+  <Project Path="../TestProject2/TestProject2.csproj" Id="e9080352-5346-4437-bcb4-e5f68d2f65ff" />
+  <Project Path="../TestProject3/TestProject3.csproj" Id="6f3424f9-be78-41ed-a377-35aef97a39c5" />
+  <Project Path="ConsoleApp1.csproj" />
+</Solution>
