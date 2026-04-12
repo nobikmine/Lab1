@@ -5,62 +5,43 @@ namespace TestProject1
 {
     public class Tests
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
-
         [Test]
         public void Test_TrainAtStation_PassengerDuringStop()
         {
-            string[] arrivalInput = new string[] { "12", "30" };
-            string[] departureInput = new string[] { "13", "00" };
-            string[] passengerInput = new string[] { "12", "45" };
             string expected = "Поезд стоит на платформе";
-            string result = Logic.CountTime(arrivalInput, departureInput, passengerInput);
+            string result = Logic.CountTime(12, 30, 13, 0, 12, 45);
             Assert.That(result, Is.EqualTo(expected));
         }
 
         [Test]
         public void Test_TrainNotAtStation_PassengerBeforeArrival()
         {
-            string[] arrivalInput = new string[] { "12", "30" };
-            string[] departureInput = new string[] { "13", "00" };
-            string[] passengerInput = new string[] { "12", "00" };
             string expected = "Поезда нет на платформе";
-            string result = Logic.CountTime(arrivalInput, departureInput, passengerInput);
+            string result = Logic.CountTime(12, 30, 13, 0, 12, 0);
             Assert.That(result, Is.EqualTo(expected));
         }
 
         [Test]
         public void Test_TrainNotAtStation_PassengerAfterDeparture()
         {
-            string[] arrivalInput = new string[] { "12", "30" };
-            string[] departureInput = new string[] { "13", "00" };
-            string[] passengerInput = new string[] { "13", "15" };
             string expected = "Поезда нет на платформе";
-            string result = Logic.CountTime(arrivalInput, departureInput, passengerInput);
+            string result = Logic.CountTime(12, 30, 13, 0, 13, 15);
             Assert.That(result, Is.EqualTo(expected));
         }
 
         [Test]
         public void Test_TrainAtStation_Night()
         {
-            string[] arrivalInput = new string[] { "23", "30" };
-            string[] departureInput = new string[] { "01", "30" };
-            string[] passengerInput = new string[] { "00", "45" };
             string expected = "Поезд стоит на платформе";
-            string result = Logic.CountTime(arrivalInput, departureInput, passengerInput);
+            string result = Logic.CountTime(23, 30, 1, 30, 0, 45);
             Assert.That(result, Is.EqualTo(expected));
         }
+
         [Test]
-        public void Test_TrainAtStation_EmptyInput()
+        public void Test_InvalidTime()
         {
-            string[] arrivalInput = new string[] { "", "" };
-            string[] departureInput = new string[] { "01", "30" };
-            string[] passengerInput = new string[] { "00", "45" };
-            string expected = "Ошибка: введены не все значения времени";
-            string result = Logic.CountTime(arrivalInput, departureInput, passengerInput);
+            string expected = "Ошибка: некорректное время";
+            string result = Logic.CountTime(-1, 0, 1, 30, 0, 45);
             Assert.That(result, Is.EqualTo(expected));
         }
     }
