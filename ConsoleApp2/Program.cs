@@ -4,24 +4,34 @@ namespace ConsoleApp2
 {
     public class Logic
     {
-        public static (List<int> row, int FirstNum) FindFirstNum(int n)
+        public static void PrintSquares(int n)
         {
-            List<int> nums = new List<int>();
             int i = 1;
             int current = 1;
 
             while (current <= n)
             {
-                nums.Add(current);
+                Console.Write(current + ", ");
                 i++;
                 current = i * i;
             }
+            Console.Write(current);
+            Console.WriteLine();
+        }
 
-            nums.Add(current);
-            return (nums, current);
+        public static int FindFirstNum(int n)
+        {
+            int i = 1;
 
+            while (i * i <= n)
+            {
+                i++;
+            }
+
+            return i * i;
         }
     }
+
     public static class InputHelper
     {
         public static bool TryParseInput(string input, out int n)
@@ -29,6 +39,7 @@ namespace ConsoleApp2
             return int.TryParse(input, out n);
         }
     }
+
     class Program
     {
         static void Main(string[] args)
@@ -39,7 +50,7 @@ namespace ConsoleApp2
                 Console.Write("Введите число n: ");
                 string input = Console.ReadLine();
 
-                if (int.TryParse(input, out n))
+                if (InputHelper.TryParseInput(input, out n))
                 {
                     break;
                 }
@@ -49,11 +60,11 @@ namespace ConsoleApp2
                 }
             }
 
-            var result = Logic.FindFirstNum(n);
-
             Console.WriteLine("Сформированный ряд чисел:");
-            Console.WriteLine(string.Join(", ", result.row));
-            Console.WriteLine($"Первое число, большее {n}: {result.FirstNum}");
+            Logic.PrintSquares(n);
+
+            int result = Logic.FindFirstNum(n);
+            Console.WriteLine($"Первое число, большее {n}: {result}");
         }
     }
 }

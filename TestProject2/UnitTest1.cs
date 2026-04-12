@@ -1,68 +1,47 @@
 ﻿using ConsoleApp2;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
 using NUnit.Framework;
-using System.Collections.Generic;
+using System.IO;
 
 namespace TestProject2
 {
     public class Tests
     {
-        [SetUp]
-        public void Setup()
+        [Test]
+        public void FindFirstNum_Negative()
         {
+            Assert.That(Logic.FindFirstNum(-5), Is.EqualTo(1));
         }
 
         [Test]
-        public void Test_FindFirstNum_WithNegativeNumber()
+        public void FindFirstNum_Zero()
         {
-            int n = -5;
-            List<int> expectedRow = new List<int> { 1 };
-            int expectedFirstNum = 1;
-            var result = Logic.FindFirstNum(n);
-            Assert.That(result.row, Is.EqualTo(expectedRow));
-            Assert.That(result.FirstNum, Is.EqualTo(expectedFirstNum));
+            Assert.That(Logic.FindFirstNum(0), Is.EqualTo(1));
         }
 
         [Test]
-        public void Test_FindFirstNum_WithNEquals9()
+        public void FindFirstNum_Positive()
         {
-            int n = 9;
-            List<int> expectedRow = new List<int> { 1, 4, 9, 16 };
-            int expectedFirstNum = 16;
-            var result = Logic.FindFirstNum(n);
-            Assert.That(result.row, Is.EqualTo(expectedRow));
-            Assert.That(result.FirstNum, Is.EqualTo(expectedFirstNum));
+            Assert.That(Logic.FindFirstNum(9), Is.EqualTo(16));
         }
 
         [Test]
-        public void Test_FindFirstNum_WithNullOrEmptyString_ThrowsException()
+        public void PrintSquares_Output()
         {
-            Assert.Throws<ArgumentNullException>(() => int.Parse(null));
-            Assert.Throws<FormatException>(() => int.Parse(""));
-        }
+            using var sw = new StringWriter();
+            Console.SetOut(sw);
 
-        [Test]
-        public void Test_FindFirstNum_WithNEquals0()
-        {
-            int n = 0;
-            List<int> expectedRow = new List<int> { 1 };
-            int expectedFirstNum = 1;
-            var result = Logic.FindFirstNum(n);
-            Assert.That(result.row, Is.EqualTo(expectedRow));
-            Assert.That(result.FirstNum, Is.EqualTo(expectedFirstNum));
+            Logic.PrintSquares(9);
+
+            Assert.That(sw.ToString(), Is.EqualTo("1, 4, 9, 16" + Environment.NewLine));
         }
     }
-    [TestFixture]
+
     public class InputTests
     {
         [Test]
-        public void Test_TryParseInput_WithNonNumericString()
+        public void TryParseInput_Invalid()
         {
-            string input = "hello";
-            int n;
-            bool result = InputHelper.TryParseInput(input, out n);
-
-            Assert.That(result, Is.False);
+            Assert.That(InputHelper.TryParseInput("hello", out _), Is.False);
         }
     }
 }
