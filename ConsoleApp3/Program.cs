@@ -2,6 +2,30 @@
 
 namespace ConsoleApp3
 {
+
+    public class Logic
+    {
+        public string ReverseWords(string sentence)
+        {
+            if (string.IsNullOrWhiteSpace(sentence))
+                return "";
+
+            var words = sentence
+                .Trim()
+                .Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            Array.Reverse(words);
+            return string.Join(" ", words);
+        }
+        public bool HasWords(string sentence) 
+        { 
+            if (sentence == null || sentence == "") 
+            {
+                return false;
+            } 
+            string trimmedSentence = sentence.Trim();
+            return trimmedSentence != "";
+        }
+    }
     class Program
     {
         static void Main(string[] args)
@@ -13,13 +37,11 @@ namespace ConsoleApp3
             {
                 Console.Write("Введите предложение (или 'выход' для завершения): ");
                 string input = Console.ReadLine();
-
                 if (input == "выход")
                 {
                     Console.WriteLine("До свидания!");
                     break;
                 }
-
                 if (input == null || input == "")
                 {
                     Console.WriteLine("Ошибка: Вы ничего не ввели!");
@@ -32,58 +54,12 @@ namespace ConsoleApp3
                 {
                     Console.WriteLine("Ошибка: В предложении нет слов!");
                 }
-
                 else
                 {
                     Console.WriteLine("Результат: " + result);
                 }
-
                 Console.WriteLine();
             }
-        }
-    }
-    public class Logic
-    {
-        public string ReverseWords(string sentence)
-        {
-            if (sentence == null || sentence == "")
-            {
-                return "";
-            }
-
-            sentence = sentence.Trim();
-            string[] words = sentence.Split(' ');
-            string[] reversedWords = new string[words.Length];
-            int j = 0;
-            for (int i = words.Length - 1; i >= 0; i--)
-            {
-                if (words[i] != "")
-                {
-                    reversedWords[j] = words[i];
-                    j++;
-                }
-            }
-            string result = "";
-            for (int i = 0; i < j; i++)
-            {
-                result = result + reversedWords[i];
-                if (i < j - 1)
-                {
-                    result = result + " ";
-                }
-            }
-
-            return result;
-        }
-        public bool HasWords(string sentence)
-        {
-            if (sentence == null || sentence == "")
-            {
-                return false;
-            }
-
-            string trimmedSentence = sentence.Trim();
-            return trimmedSentence != "";
         }
     }
 }

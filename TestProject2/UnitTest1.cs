@@ -34,10 +34,6 @@ namespace TestProject2
 
             Assert.That(sw.ToString(), Is.EqualTo("1, 4, 9, 16" + Environment.NewLine));
         }
-    }
-
-    public class InputTests
-    {
         [Test]
         public void TryParseInput_Invalid()
         {
