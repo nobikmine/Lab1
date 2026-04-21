@@ -4,17 +4,17 @@ namespace ConsoleApp1
 {
     public static class Logic
     {
-        public static string CountTime(int a, int b, int c, int d, int n, int m)
+        public static string CountTime(int trainHourIn, int trainMinIn, int trianHourOut, int trainMinOut, int humanHour, int humanMin)
         {
-            if (a < 0 || a > 23 || c < 0 || c > 23 || n < 0 || n > 23 ||
-                b < 0 || b > 59 || d < 0 || d > 59 || m < 0 || m > 59)
+            if (trainHourIn < 0 || trainHourIn > 23 || trianHourOut < 0 || trianHourOut > 23 || humanHour < 0 || humanHour > 23 || 
+                trainMinIn < 0 || trainMinIn > 59 || trainMinOut < 0 || trainMinOut > 59 || humanMin < 0 || humanMin > 59)
             {
                 return "Ошибка: некорректное время";
             }
 
-            int minutesIn = a * 60 + b;
-            int minutesOut = c * 60 + d;
-            int minutesHere = n * 60 + m;
+            int minutesIn = trainHourIn * 60 + trainMinIn;
+            int minutesOut = trianHourOut * 60 + trainMinOut;
+            int minutesHere = humanHour * 60 + humanMin;
 
             bool isTrainAtStation;
 
@@ -55,7 +55,7 @@ namespace ConsoleApp1
                     return value;
                 }
 
-                Console.WriteLine("Ошибка: введите число");
+                Console.WriteLine("Ошибка: введите правильное число");
             }
         }
 

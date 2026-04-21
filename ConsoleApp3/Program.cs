@@ -3,34 +3,24 @@
 namespace ConsoleApp3
 {
 
-    public class Logic
+    public static class Logic
     {
-        public string ReverseWords(string sentence)
+        public static string ReverseWords(string sentence)
         {
             if (string.IsNullOrWhiteSpace(sentence))
                 return "";
 
             var words = sentence
                 .Trim()
-                .Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                .Split(new char[]{ ' ', '\t'}, StringSplitOptions.RemoveEmptyEntries);
             Array.Reverse(words);
             return string.Join(" ", words);
-        }
-        public bool HasWords(string sentence) 
-        { 
-            if (sentence == null || sentence == "") 
-            {
-                return false;
-            } 
-            string trimmedSentence = sentence.Trim();
-            return trimmedSentence != "";
         }
     }
     class Program
     {
         static void Main(string[] args)
         {
-            Logic reverser = new Logic();
             Console.WriteLine("=== Программа для разворота слов в предложении ===");
             Console.WriteLine();
             while (true)
@@ -48,7 +38,7 @@ namespace ConsoleApp3
                     Console.WriteLine();
                     continue;
                 }
-                string result = reverser.ReverseWords(input);
+                string result = Logic.ReverseWords(input);
 
                 if (result == "")
                 {

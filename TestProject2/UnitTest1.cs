@@ -1,6 +1,6 @@
 ﻿using ConsoleApp2;
 using NUnit.Framework;
-using System.IO;
+using System.Linq;
 
 namespace TestProject2
 {
@@ -25,19 +25,24 @@ namespace TestProject2
         }
 
         [Test]
-        public void PrintSquares_Output()
+        public void GetSquaresUpTo_Normal()
         {
-            using var sw = new StringWriter();
-            Console.SetOut(sw);
-
-            Logic.PrintSquares(9);
-
-            Assert.That(sw.ToString(), Is.EqualTo("1, 4, 9, 16" + Environment.NewLine));
+            var result = Logic.GetSquaresUpTo(9);
+            Assert.That(result, Is.EqualTo(new int[]{ 1, 4, 9 }));
         }
+
         [Test]
-        public void TryParseInput_Invalid()
+        public void GetSquaresUpTo_Zero()
         {
-            Assert.That(InputHelper.TryParseInput("hello", out _), Is.False);
+            var result = Logic.GetSquaresUpTo(0);
+            Assert.That(result, Is.Empty);
+        }
+
+        [Test]
+        public void GetSquaresUpTo_Negative()
+        {
+            var result = Logic.GetSquaresUpTo(-5);
+            Assert.That(result, Is.Empty);
         }
     }
 }
