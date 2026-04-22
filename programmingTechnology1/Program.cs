@@ -61,14 +61,14 @@ namespace ConsoleApp1
 
         static void Main(string[] args)
         {
-            int a = ReadInt("Введите часы прибытия: ");
-            int b = ReadInt("Введите минуты прибытия: ");
-            int c = ReadInt("Введите часы отправления: ");
-            int d = ReadInt("Введите минуты отправления: ");
-            int n = ReadInt("Введите часы прихода пассажира: ");
-            int m = ReadInt("Введите минуты прихода пассажира: ");
+            int trainHourIn = ReadInt("Введите часы прибытия: ");
+            int trainMinIn = ReadInt("Введите минуты прибытия: ");
+            int trianHourOut = ReadInt("Введите часы отправления: ");
+            int trainMinOut = ReadInt("Введите минуты отправления: ");
+            int humanHour = ReadInt("Введите часы прихода пассажира: ");
+            int humanMin = ReadInt("Введите минуты прихода пассажира: ");
 
-            string result = Logic.CountTime(a, b, c, d, n, m);
+            string result = Logic.CountTime(trainHourIn, trainMinIn, trianHourOut, trainMinOut, humanHour, humanMin);
             Console.WriteLine(result);
         }
     }
